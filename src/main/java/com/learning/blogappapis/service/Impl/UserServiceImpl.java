@@ -5,6 +5,7 @@ import com.learning.blogappapis.model.User;
 import com.learning.blogappapis.payloads.UserDTO;
 import com.learning.blogappapis.repository.UserRepo;
 import com.learning.blogappapis.service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired private UserRepo userRepo;
+    @Autowired private ModelMapper modelMapper;
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
@@ -59,6 +61,7 @@ public class UserServiceImpl implements UserService {
         this.userRepo.delete(user);
     }
 
+   /* //Manually converting DTO to USER type
     private User dtoToUser(UserDTO userDTO){
         User user = new User();
         user.setId(userDTO.getId());
@@ -67,8 +70,14 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setAbout(userDTO.getAbout());
         return user;
+    }*/
+
+    private User dtoToUser(UserDTO userDTO){
+        User mapDtoToUser = this.modelMapper.map(userDTO, User.class);
+        return mapDtoToUser;
     }
 
+/*    //Manually Converting USER to DTO type
     private UserDTO userToDTO(User user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -77,5 +86,10 @@ public class UserServiceImpl implements UserService {
         userDTO.setPassword(user.getPassword());
         userDTO.setAbout(user.getAbout());
         return userDTO;
+    }*/
+
+    private UserDTO userToDTO(User user){
+        UserDTO mapUserToUser = this.modelMapper.map(user, UserDTO.class);
+        return mapUserToUser;
     }
 }

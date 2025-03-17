@@ -3,15 +3,15 @@ package com.learning.blogappapis.controller;
 import com.learning.blogappapis.payloads.ApiResponse;
 import com.learning.blogappapis.payloads.UserDTO;
 import com.learning.blogappapis.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -21,14 +21,14 @@ public class UserController {
 
     //create user
     @PostMapping("/")
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO){
         UserDTO createdUser = this.userService.createUser(userDTO);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     //update user
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable int id, @RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> updateUser(@Valid @PathVariable int id, @RequestBody UserDTO userDTO){
         UserDTO userDTO1 = userService.updateUser(userDTO, id);
         return new ResponseEntity<>(userDTO1,HttpStatus.OK);
     }
