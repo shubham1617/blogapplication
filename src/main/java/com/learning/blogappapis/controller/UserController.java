@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +59,8 @@ public class UserController {
     //delete user
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable int id){
+        LocalDateTime currentDate = LocalDateTime.now();
         this.userService.deleteUser(id);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully",true),HttpStatus.OK);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully",true,currentDate),HttpStatus.OK);
     }
 }

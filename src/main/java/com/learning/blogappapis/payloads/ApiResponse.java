@@ -1,14 +1,18 @@
 package com.learning.blogappapis.payloads;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class ApiResponse {
 
     private String message;
     private boolean success;
+    private LocalDateTime date;
 
-
-    public ApiResponse(String message, boolean success) {
+    public ApiResponse(String message, boolean success, LocalDateTime date) {
         this.message = message;
         this.success = success;
+        this.date = date;
     }
 
     public String getMessage() {
@@ -25,5 +29,13 @@ public class ApiResponse {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }
