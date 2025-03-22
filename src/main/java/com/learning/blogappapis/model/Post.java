@@ -1,12 +1,14 @@
 package com.learning.blogappapis.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -30,4 +32,8 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userId;
+
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Comment> comments = new ArrayList<>();
 }

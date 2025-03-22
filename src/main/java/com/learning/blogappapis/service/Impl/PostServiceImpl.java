@@ -43,7 +43,6 @@ public class PostServiceImpl  implements PostService {
         User user = userRepo.findById(postId).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", postId));
         Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category", "CategoryId", postId));
         Post post = modelMapper.map(postDTO, Post.class);
-        post.setImage("default.jpg");
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = currentDateTime.format(formatter);

@@ -1,9 +1,11 @@
 package com.learning.blogappapis.payloads;
 
+import org.springframework.http.HttpStatusCode;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class ApiResponse {
+public class ApiResponse  {
 
     private String message;
     private boolean success;

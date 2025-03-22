@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -23,8 +24,17 @@ public class GlobalExceptionHandler {
         String message = exception.getMessage();
         LocalDateTime localDate = LocalDateTime.now();
         ApiResponse apiResponse = new ApiResponse(message,true,localDate);
-        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
+
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(IOException exception){
+        String message = exception.getMessage();
+        LocalDateTime localDate = LocalDateTime.now();
+        ApiResponse apiResponse = new ApiResponse(message,true,localDate);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+    }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,String>> handleArgumentNotValidException(MethodArgumentNotValidException exception){
@@ -35,8 +45,6 @@ public class GlobalExceptionHandler {
             String defaultMessage = e.getDefaultMessage();
             response.put(field,defaultMessage);
         });
-
-
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
