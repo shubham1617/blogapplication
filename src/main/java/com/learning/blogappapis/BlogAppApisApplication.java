@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @SpringBootApplication
-public class BlogAppApisApplication {
+public class  BlogAppApisApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BlogAppApisApplication.class, args);

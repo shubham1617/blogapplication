@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Category")
 @Setter
@@ -21,5 +24,8 @@ public class Category
     private String categoryTitle;
     @Column(name = "description")
     private String categoryDescription;
+
+    @OneToMany(mappedBy = "categoryId", cascade = CascadeType.ALL)
+    private List<Post> posts = new ArrayList<>();
 }
 
