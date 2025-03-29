@@ -38,6 +38,8 @@ public class PostServiceImpl  implements PostService {
     @Autowired
     private BuildResponse buildResponse;
 
+
+
     @Override
     public PostDTO createPost(PostDTO postDTO, int postId, int categoryId) {
         User user = userRepo.findById(postId).orElseThrow(() -> new ResourceNotFoundException("User", "UserId", postId));

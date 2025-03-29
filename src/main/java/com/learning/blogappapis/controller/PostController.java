@@ -119,4 +119,5 @@ public class PostController {
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(resourceAsStream,response.getOutputStream());
     }
+
 }

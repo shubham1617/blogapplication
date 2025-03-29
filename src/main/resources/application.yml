@@ -21,3 +21,8 @@ spring:
       max-request-size: 10MB
 
 filepath: D:\SpringBoot\blog-app-apis\target\uploadedFiles
+
+logging:
+  level:
+    org.springframework.security: debug
+

@@ -7,6 +7,7 @@ import com.learning.blogappapis.repository.UserRepo;
 import com.learning.blogappapis.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +18,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired private UserRepo userRepo;
     @Autowired private ModelMapper modelMapper;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
         User user = this.dtoToUser(userDTO);
+        user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         User savedUser = this.userRepo.save(user);
         return this.userToDTO(savedUser);
     }
@@ -30,7 +33,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User","User Id",id));
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
         user.setAbout(userDTO.getAbout());
         User savedUser = this.userRepo.save(user);
         UserDTO updatedUserDTO = this.userToDTO(savedUser);
