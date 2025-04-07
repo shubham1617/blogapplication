@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

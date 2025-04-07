@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PostRepo extends JpaRepository<Post,Integer> {
+public interface PostRepo extends JpaRepository<Post,Integer>
+{
 
     Page<Post> findPostByCategoryId(Pageable pageable,Category category);
     Page<Post> findAllByUserId(Pageable pageable, User user);

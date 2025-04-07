@@ -1,15 +1,14 @@
 package com.learning.blogappapis.service;
 
 
-import com.learning.blogappapis.payloads.ApiResponse;
 import com.learning.blogappapis.payloads.PostDTO;
 import com.learning.blogappapis.payloads.PostResponse;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 
-public interface PostService {
+public interface PostService
+{
 
     PostDTO createPost(PostDTO postDTO, int postId, int categoryId);
     PostDTO updatePost(PostDTO postDTO,int id);

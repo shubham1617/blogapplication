@@ -1,11 +1,11 @@
 package com.learning.blogappapis.service;
 
-import com.learning.blogappapis.model.Category;
 import com.learning.blogappapis.payloads.CategoryDTO;
 
 import java.util.List;
 
-public interface CategoryService {
+public interface CategoryService
+{
 
     public CategoryDTO createCatetory(CategoryDTO categoryDTO);
     public CategoryDTO updateCatetory(CategoryDTO categoryDTO, int id);

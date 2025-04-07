@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends JpaRepository<User,Integer> {
-
-
+public interface UserRepo extends JpaRepository<User,Integer>
+{
     @Query(value = "SELECT * FROM user WHERE email = BINARY :email", nativeQuery = true)
     User findByEmailCaseSensitive(@Param("email") String email);
-
 }

@@ -14,14 +14,16 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import java.util.List;
 
 @Configuration
-public class CustomUserDetailsService implements UserDetailsService{
-
+public class CustomUserDetailsService implements UserDetailsService
+{
     @Autowired private UserRepo userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String username)  {
+    public UserDetails loadUserByUsername(String username)
+    {
         User byEmailCaseSensitive = this.userRepo.findByEmailCaseSensitive(username);
-        if(byEmailCaseSensitive == null){
+        if(byEmailCaseSensitive == null)
+        {
             System.out.println("No User with Email " + username + " found. Please check the email !!!");
             throw new ResourceNotFoundException("Email","email",username);
         }

@@ -20,7 +20,8 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException exception){
+    public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException exception)
+    {
         String message = exception.getMessage();
         LocalDateTime localDate = LocalDateTime.now();
         ApiResponse apiResponse = new ApiResponse(message,true,localDate);
@@ -28,7 +29,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IOException.class)
-    public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(IOException exception){
+    public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(IOException exception)
+    {
         String message = exception.getMessage();
         LocalDateTime localDate = LocalDateTime.now();
         ApiResponse apiResponse = new ApiResponse(message,true,localDate);
@@ -37,14 +39,17 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> handleArgumentNotValidException(MethodArgumentNotValidException exception){
+    public ResponseEntity<Map<String,String>> handleArgumentNotValidException(MethodArgumentNotValidException exception)
+    {
         Map<String,String> response = new HashMap<>();
         List<ObjectError> allErrors = exception.getBindingResult().getAllErrors();
-        allErrors.forEach(e -> {
+        allErrors.forEach(e ->
+        {
             String field = ((FieldError) e).getField();
             String defaultMessage = e.getDefaultMessage();
             response.put(field,defaultMessage);
         });
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
 }

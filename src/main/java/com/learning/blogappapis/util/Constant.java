@@ -3,7 +3,8 @@ package com.learning.blogappapis.util;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Constant {
+public class Constant
+{
 
     public static final String DEFAULT_PAGE_NUMBER ="0";
     public static final String DEFAULT_PAGE_VALUE="5";

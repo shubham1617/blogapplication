@@ -15,8 +15,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Post {
-
+public class Post
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int postId;

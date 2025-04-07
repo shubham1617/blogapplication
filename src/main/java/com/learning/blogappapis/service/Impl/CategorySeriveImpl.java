@@ -15,21 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CategorySeriveImpl implements CategoryService {
+public class CategorySeriveImpl implements CategoryService
+{
 
     @Autowired private CategoryRepo categoryRepo;
     @Autowired private ModelMapper modelMapper;
 
     @Override
-    public CategoryDTO createCatetory(CategoryDTO categoryDTO) {
+    public CategoryDTO createCatetory(CategoryDTO categoryDTO)
+    {
         Category category = modelMapper.map(categoryDTO, Category.class);
         this.categoryRepo.save(category);
         return modelMapper.map(category, CategoryDTO.class);
-
     }
 
     @Override
-    public CategoryDTO updateCatetory(CategoryDTO categoryDTO, int id) {
+    public CategoryDTO updateCatetory(CategoryDTO categoryDTO, int id)
+    {
         Category existingCategory = categoryRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("CategoryID", "Category", id));
         existingCategory.setCategoryTitle(categoryDTO.getCategoryTitle());
         existingCategory.setCategoryDescription(categoryDTO.getCategoryDescription());
@@ -40,14 +42,16 @@ public class CategorySeriveImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO getSingleCategory(int id) {
+    public CategoryDTO getSingleCategory(int id)
+    {
         Category singleCategory = this.categoryRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("CategoryID", "Category", id));
         CategoryDTO convertFromCategoryToDTO = modelMapper.map(singleCategory, CategoryDTO.class);
         return convertFromCategoryToDTO;
     }
 
     @Override
-    public List<CategoryDTO> getAllCategories() {
+    public List<CategoryDTO> getAllCategories()
+    {
         List<Category> allResult = this.categoryRepo.findAll();
         List<CategoryDTO> categoryDTOList = new ArrayList<>();
         allResult.forEach(category -> categoryDTOList.add(modelMapper.map(category, CategoryDTO.class)) );
@@ -55,7 +59,8 @@ public class CategorySeriveImpl implements CategoryService {
     }
 
     @Override
-    public void deleteCatetory(int id) {
+    public void deleteCatetory(int id)
+    {
         Category singleCategory = this.categoryRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("CategoryID", "Category", id));
         this.categoryRepo.delete(singleCategory);
     }

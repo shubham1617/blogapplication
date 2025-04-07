@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +17,8 @@ public class BuildResponse {
 
     @Autowired private ModelMapper modelMapper;
 
-
-    public PostResponse buildResponseFromDBResult(Page<Post> posts){
+    public PostResponse buildResponseFromDBResult(Page<Post> posts)
+    {
         List<Post> result = posts.getContent();
         /*List<PostDTO> postList = new ArrayList<>();
         for (Post post : result) {

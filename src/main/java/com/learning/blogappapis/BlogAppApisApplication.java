@@ -10,12 +10,14 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @SpringBootApplication
 public class  BlogAppApisApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SpringApplication.run(BlogAppApisApplication.class, args);
     }
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper()
+    {
         return new ModelMapper();
     }
 

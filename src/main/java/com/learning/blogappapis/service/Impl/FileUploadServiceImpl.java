@@ -12,10 +12,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
-public class FileUploadServiceImpl implements FileUploadService {
+public class FileUploadServiceImpl implements FileUploadService
+{
 
     @Override
-    public String uploadFile(String path, MultipartFile multipartFile) throws IOException {
+    public String uploadFile(String path, MultipartFile multipartFile) throws IOException
+    {
         //File Name
         String originalFilename = multipartFile.getOriginalFilename();
 
@@ -48,7 +50,8 @@ public class FileUploadServiceImpl implements FileUploadService {
     }
 
     @Override
-    public InputStream getResourceAsStream(String path,String fileName) throws FileNotFoundException {
+    public InputStream getResourceAsStream(String path,String fileName) throws FileNotFoundException
+    {
         String fullPath = path + File.separator + fileName;
         InputStream is = new FileInputStream(fullPath);
         //dblogic to get the file from db path

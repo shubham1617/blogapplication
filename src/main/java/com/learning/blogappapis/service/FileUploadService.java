@@ -6,7 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-public interface FileUploadService {
+public interface FileUploadService
+{
 
     String uploadFile(String path, MultipartFile multipartFile) throws IOException;
     InputStream getResourceAsStream(String path, String fileName) throws FileNotFoundException;

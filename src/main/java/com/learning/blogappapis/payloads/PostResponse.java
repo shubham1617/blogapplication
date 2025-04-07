@@ -11,7 +11,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostResponse {
+public class PostResponse
+{
 
     private List<PostDTO> response;
     private int pageNumber;

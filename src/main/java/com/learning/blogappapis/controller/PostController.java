@@ -85,7 +85,8 @@ public class PostController {
     }
 
     @DeleteMapping("/post/{postId}")
-    public ResponseEntity<?> deletePost(@PathVariable int postId){
+    public ResponseEntity<?> deletePost(@PathVariable int postId)
+    {
         LocalDateTime currentDateTime = LocalDateTime.now();
         this.postService.deletePostById(postId);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Deleted Successfully",true,currentDateTime), HttpStatus.OK);
@@ -102,7 +103,8 @@ public class PostController {
 
 
     @PostMapping("/post/{postId}/image/upload")
-        public ResponseEntity<PostDTO> uploadFile(@PathVariable int postId, @RequestParam("imageName") MultipartFile file) throws IOException {
+        public ResponseEntity<PostDTO> uploadFile(@PathVariable int postId, @RequestParam("imageName") MultipartFile file) throws IOException
+    {
         String response = null;
             PostDTO postById = this.postService.getPostById(postId);
                 response = this.fileUploadService.uploadFile(path, file);
@@ -112,7 +114,8 @@ public class PostController {
     }
 
     @GetMapping(value = "/post/{postId}/getImage/",produces =MediaType.IMAGE_JPEG_VALUE )
-    public void downloadAndServeFile(@PathVariable int postId, HttpServletResponse response) throws IOException {
+    public void downloadAndServeFile(@PathVariable int postId, HttpServletResponse response) throws IOException
+    {
         PostDTO postById = this.postService.getPostById(postId);
         String imageId = postById.getImage();
         InputStream resourceAsStream = this.fileUploadService.getResourceAsStream(path, imageId);

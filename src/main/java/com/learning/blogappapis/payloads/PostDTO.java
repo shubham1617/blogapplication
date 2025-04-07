@@ -14,7 +14,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostDTO {
+public class PostDTO
+{
 
     private String postId;
     private String title;
